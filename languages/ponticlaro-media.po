@@ -1,0 +1,140 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ponticlaro\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-10-15 10:22-0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Joe Tan <joetan54@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../media-settings.php:25
+msgid "Settings"
+msgstr ""
+
+#: ../media-settings.php:83
+msgid "Ponticlaro Media"
+msgstr ""
+
+#: ../settings.html:5
+msgid "Ponticlaro Media Settings"
+msgstr ""
+
+#: ../settings.html:11
+msgid "Media Source URL"
+msgstr ""
+
+#: ../settings.html:13
+msgid "When inserting images and media from the WordPress media library, modify the source URL as follows:"
+msgstr ""
+
+#: ../settings.html:20
+msgid "Use the website's URL (default WordPress behavior)"
+msgstr ""
+
+#: ../settings.html:30
+msgid "Use a relative URL (i.e. /uploads/image.jpg)"
+msgstr ""
+
+#: ../settings.html:38
+msgid "Use a custom domain:"
+msgstr ""
+
+#: ../settings.html:46
+msgid "Image Tag Attributes"
+msgstr ""
+
+#: ../settings.html:47
+msgid "Modify the image tag's attributes as follows:"
+msgstr ""
+
+#: ../settings.html:60
+msgid "&lt;img "
+msgstr ""
+
+#: ../settings.html:63
+msgid "Default"
+msgstr ""
+
+#: ../settings.html:66
+msgid "Custom"
+msgstr ""
+
+#: ../settings.html:69
+msgid "Hidden"
+msgstr ""
+
+#: ../settings.html:125
+msgid "[media] Shortcode"
+msgstr ""
+
+#: ../settings.html:127
+msgid "Instructions"
+msgstr ""
+
+#: ../settings.html:127
+msgid "Shortcode Overrides"
+msgstr ""
+
+#: ../settings.html:129
+msgid "The easiest way to use the <code>[media]</code> shortcode is to upload an image, then type <code>[media]</code> into the post content box. This plugin will automatically display the image without having to insert any code. When you upload a second image, whichever is the first image by sort order in the post's gallery will show in the place of the first <code>[media]</code> shortcode.  Adding a second <code>[media]</code> shortcode will show the second item in your post's gallery.  You can handle an unlimited amount of media in this way, never having to re-insert the uploaded media - perfect for simplifying site management! "
+msgstr ""
+
+#: ../settings.html:132
+msgid "<code>[media]</code> shortcode overrides can be combined in any order."
+msgstr ""
+
+#: ../settings.html:134
+msgid "<code>[media width=\"999\"]</code> Width: any pixel dimension"
+msgstr ""
+
+#: ../settings.html:135
+msgid "<code>[media height=\"999\"]</code> Height: any pixel dimension"
+msgstr ""
+
+#: ../settings.html:136
+msgid "<code>[media class=\"ponticlaro\"]</code> Class: any class"
+msgstr ""
+
+#: ../settings.html:137
+msgid "<code>[media id=\"2\"]</code> ID: Global WordPress media ID number"
+msgstr ""
+
+#: ../settings.html:138
+msgid "<code>[media size=\"medium\"]</code> Image Size: full, large, medium, thumbnail"
+msgstr ""
+
+#: ../settings.html:139
+msgid "<code>[media link=\"true\"]</code> Media displayed as link: true, false"
+msgstr ""
+
+#: ../settings.html:146
+msgid "Use the above settings for all [media] short codes"
+msgstr ""
+
+#: ../settings.html:151
+msgid "Insert all media as [media] short code"
+msgstr ""
+
+#: ../settings.html:155
+msgid "Save Settings"
+msgstr ""
+
+#: ../settings.html:165
+msgid "&copy; Ponticlaro Inc. All rights reserved. Distributed under the <a href=\"http://www.gnu.org/licenses/gpl-3.0.html\">GPL 3 license</a>."
+msgstr ""
+
+#: ../settings.html:169
+msgid "<b>Ponticlaro</b> specializes in WordPress-based web design, development and mangement. To receive an estimate for your website project, please visit: <a href=\"http://ponticlaro.com/planner\" target=\"_blank\">www.ponticlaro.com/planner</a></p>"
+msgstr ""
+
+#: ../settings.html:174
+msgid "Donate to support this software"
+msgstr ""
+

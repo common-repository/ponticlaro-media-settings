@@ -1,0 +1,239 @@
+
+<div class="wrap" style="background-image:  url('../wp-content/plugins/ponticlaro-media-settings/ponticlaro-wordpress-bg.png'); background-repeat: no-repeat; background-position: right top; min-width: 830px;">
+
+<?php screen_icon(); ?>
+<h2><?php _e('Ponticlaro Media Settings', 'ponticlaro-media-settings');?></h2>
+
+
+
+<form method="post">
+<input type="hidden" name="action" value="save" />
+<h3><?php _e('Media Source URL', 'ponticlaro-media-settings');?></h3>
+<p>
+<?php _e('When inserting images and media from the WordPress media library, modify the source URL as follows:', 'ponticlaro-media-settings');?>
+</p>
+<table class="form-table">
+<tr>
+<th class="th-full" colspan="2" scope="row">
+<label for="pc-default">
+<input type="radio" value="" id="pc-default" name="ponticlaro_image_path" <?php echo (!$image_path ? 'checked="checked"' : '');?>/>
+<?php _e('Use the website\'s URL (default WordPress behavior)', 'ponticlaro-media-settings');?></label>
+</th>
+</tr>
+
+
+
+<tr>
+<th class="th-full" colspan="2" scope="row">
+<label for="pc-relative">
+<input type="radio" value="relative" id="pc-relative" name="ponticlaro_image_path"  <?php echo (($image_path == '/') ? 'checked="checked"' : '');?>/>
+<?php _e('Use a relative URL (i.e. /uploads/image.jpg)', 'ponticlaro-media-settings');?></label>
+</th>
+</tr>
+
+<tr>
+<th class="th-full" colspan="2" scope="row">
+<label for="pc-custom">
+<input type="radio" value="custom" id="pc-custom" name="ponticlaro_image_path"  <?php echo ((strlen($image_path) > 7) ? 'checked="checked"' : '');?>/>
+<?php _e('Use a custom domain:', 'ponticlaro-media-settings');?></label> 
+<input type="text" name="ponticlaro_image_domain" id="ponticlaro_image_domain" size="50" value="<?php echo ((strlen($image_path_saved) > 7) ? $image_path_saved : 'http://');?>" />
+</th>
+</tr>
+</tbody></table>
+<br />
+
+
+<h3><?php _e('Image Tag Attributes', 'ponticlaro-media-settings');?></h3>
+<p><?php _e('Modify the image tag\'s attributes as follows:', 'ponticlaro-media-settings');?></p>
+<div id="tabs" class="ui-tabs">
+
+<ul class="">
+<?php foreach ($attribs as $k => $attr):?>
+	<li><a href="#tabs-<?php echo $k;?>"><?php echo $attr;?></a></li>
+<?php endforeach;?>
+</ul>
+<?php foreach ($attribs as $k => $attr):?>
+<div class="tab-content" id="tabs-<?php echo $k?>">
+
+	<label for="pc-attrib-<?php echo $attr;?>">
+	<input type="checkbox" value="1" id="pc-attrib-<?php echo $attr;?>" name="ponticlaro_image_attribs[<?php echo $attr;?>]" <?php echo ($image_attribs[$attr] ? 'checked="checked"' : '');?>/>
+	<code><?php _e('&lt;img '.$attr.'=&quot; &quot; .. /&gt;', 'ponticlaro-media-settings');?></code></label>
+	<div class="ponticlaro_image_vals">
+		&nbsp; &nbsp; &nbsp;
+		<input name="ponticlaro_image_vals[<?php echo $attr;?>]" id="ponticlaro_image_vals-<?php echo $attr;?>-default" type="radio" value="0" <?php echo (!$image_vals[$attr] ? 'checked="checked"' : '') ?> /><label for="ponticlaro_image_vals-<?php echo $attr;?>-default"> <?php _e('Default', 'ponticlaro-media-settings');?> </label>
+	<?php if (!in_array($attr, array('width', 'height'))):?>
+		&nbsp; &nbsp;
+		<input name="ponticlaro_image_vals[<?php echo $attr;?>]" id="ponticlaro_image_vals-<?php echo $attr;?>-custom" type="radio" value="custom" <?php echo (($image_vals[$attr] == 'custom') ? 'checked="checked"' : '') ?> /><label for="ponticlaro_image_vals-<?php echo $attr;?>-custom"> <?php if ($attr == 'class') _e('Custom', 'ponticlaro-media-settings'); else _e('Custom', 'ponticlaro-media-settings');?>:</label> <input type="text" size="40" name="ponticlaro_image_val_custom[<?php echo $attr;?>]" value="<?php echo htmlentities($image_val_custom[$attr]);?>" />
+	<?php endif;?>
+		&nbsp; &nbsp;
+		<input name="ponticlaro_image_vals[<?php echo $attr;?>]" id="ponticlaro_image_vals-<?php echo $attr;?>-remove" type="radio" value="remove" <?php echo (($image_vals[$attr] == 'remove') ? 'checked="checked"' : '') ?>/><label for="ponticlaro_image_vals-<?php echo $attr;?>-remove"> <?php _e('Hidden', 'ponticlaro-media-settings');?></label>
+	</div>
+
+
+</div>
+
+
+
+<?php endforeach;?>
+</div>
+
+<script type="text/javascript">
+
+jQuery("#tabs").tabs({ fx: { opacity: 'toggle' } });
+
+
+</script>
+<style type="text/css">
+.ui-tabs ul {
+	border-bottom:1px solid #464646;
+	padding-bottom: 3px;
+}
+
+.ui-tabs ul li {
+	display: inline;
+	margin: 0 5px 0 0; 
+}
+
+.ui-tabs ul li a { 
+	padding:5px; 
+	background:#ddd;
+	text-decoration: none;
+}
+
+.ui-tabs ul li.ui-tabs-selected a {
+    color: #fff;
+    background: #464646;
+}
+
+.tab-content {
+    padding:10px 0 0 0;
+    height: 30px;
+}
+
+#ponticlaro-info {
+    position: absolute;
+    top: 512px;
+    left: 730px;
+    width: 250px;
+}
+
+
+</style>
+
+<br />
+
+<h3><?php _e('[media] Shortcode', 'ponticlaro-media-settings');?></h3>
+
+<p><a id="show-shortcode-instructions" href="#shortcode-instructions"><?php _e("Instructions", 'ponticlaro-media-settings');?></a> &nbsp; <a id="show-shortcode-overrides" href="#shortcode-overrides"><?php _e("Shortcode Overrides", 'ponticlaro-media-settings');?></a></p>
+
+<p id="shortcode-instructions" style="width:400px; display: none;"><?php _e("The easiest way to use the <code>[media]</code> shortcode is to upload an image, then type <code>[media]</code> into the post content box. This plugin will automatically display the image without having to insert any code. When you upload a second image, whichever is the first image by sort order in the post's gallery will show in the place of the first <code>[media]</code> shortcode.  Adding a second <code>[media]</code> shortcode will show the second item in your post's gallery.  You can handle an unlimited amount of media in this way, never having to re-insert the uploaded media - perfect for simplifying site management! ", 'ponticlaro-media-settings');?></p>
+
+<div id="shortcode-overrides" style="display: none;">
+<p style="width:400px;"><?php _e("<code>[media]</code> shortcode overrides can be combined in any order.", 'ponticlaro-media-settings');?></p>
+<ul>
+<li><?php _e('<code>[media width="999"]</code> Width: any pixel dimension', 'ponticlaro-media-settings');?></li>
+<li><?php _e('<code>[media height="999"]</code> Height: any pixel dimension', 'ponticlaro-media-settings');?></li>
+<li><?php _e('<code>[media class="ponticlaro"]</code> Class: any class', 'ponticlaro-media-settings');?></li>
+<li><?php _e('<code>[media id="2"]</code> ID: Global WordPress media ID number', 'ponticlaro-media-settings');?></li>
+<li><?php _e('<code>[media size="medium"]</code> Image Size: full, large, medium, thumbnail', 'ponticlaro-media-settings');?></li>
+<li><?php _e('<code>[media link="true"]</code> Media displayed as link: true, false', 'ponticlaro-media-settings');?></li>
+</ul>
+</div>
+
+
+<p>
+<input type="checkbox" value="1" name="ponticlaro_media_options[allmedia]" id="ponticlaro_media_options_allmedia" <?php echo ($media_options['allmedia'] ? 'checked="checked"' : '');?> /> 
+<label for="ponticlaro_media_options_allmedia"><?php _e('Use the above settings for all [media] short codes', 'ponticlaro-media-settings');?></label>
+</p>
+
+<p>
+<input type="checkbox" value="1" name="ponticlaro_media_options[shortcode]" id="ponticlaro_media_options_shortcode" <?php echo ($media_options['shortcode'] ? 'checked="checked"' : '');?> /> 
+<label for="ponticlaro_media_options_shortcode"><?php _e('Insert all media as [media] short code', 'ponticlaro-media-settings');?></label>
+</p>
+
+<p class="submit">
+	<input type="submit" value="<?php _e('Save Settings', 'ponticlaro-media-settings');?>" class="button-primary" name="Submit"/>
+</p>
+
+
+</form>
+
+
+
+
+<p>
+<?php _e('&copy; Ponticlaro Inc. All rights reserved. Distributed under the <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPL 3 license</a>.', 'ponticlaro-media-settings');?>
+</p>
+
+<div id="ponticlaro-info">
+<p><?php _e('<b>Ponticlaro</b> specializes in WordPress-based web design, development and mangement. To receive an estimate for your website project, please visit: <a href="http://ponticlaro.com/planner" target="_blank">www.ponticlaro.com/planner</a></p>', 'ponticlaro-media-settings');?>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="8827729">
+<input type="submit" value="<?php _e('Donate to support this software', 'ponticlaro-media-settings');?>" class="button-primary" name="Donate"/>
+</form>
+
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" id="ponticlaro-donate"> <input type="hidden" name="cmd" value="_s-xclick"> <input type="hidden" name="hosted_button_id" value="5387241"> 
+
+
+</form>
+
+
+</div>
+
+
+
+
+
+</div>
+<script>
+jQuery(function($) {
+	$('#ponticlaro_image_domain').click(function() {
+		$('#pc-custom').click();
+	});
+	$('.ponticlaro_image_vals input[type=radio]').click(function() {
+		$(this).parent().parent().find('input[type=checkbox]').attr('checked', 'checked');
+	});
+	$('.ponticlaro_image_vals input[type=text]').click(function() {
+		$(this).prev().prev().click();
+	});
+
+	$('#ponticlaro-donate .submit').click(function() {
+		$('#ponticlaro-donate').submit();
+		return false;
+	});
+	
+    $("#show-shortcode-overrides").click(function () {
+        $("#shortcode-instructions").hide('slow');
+        $("#shortcode-overrides").toggle("slow");
+        return false;
+    });
+    
+    $("#show-shortcode-instructions").click(function () {
+        $("#shortcode-overrides").hide('slow');
+        $("#shortcode-instructions").toggle("slow");
+        return false;
+    });
+
+	
+});
+</script>
+<style>
+.ponticlaro_image_vals {
+	white-space: nowrap;
+	display: inline;
+}
+#ponticlaro-donate .submit {
+	padding:0;
+	display: block;
+	width: 105px;
+	height:39px;
+	background:url(../wp-content/plugins/ponticlaro-media-settings/donate-button.png) no-repeat 0px 0px;
+	text-indent:-10000px;
+}
+#ponticlaro-donate .submit:hover {
+	background-position:0px -37px;
+}
+</style>
